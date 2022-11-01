@@ -1,6 +1,5 @@
 import React from 'react'
 import { useDrop } from 'react-dnd'
-import updateRank from './updateRank.js'
 import { ItemTypes } from '../../ItemTypes.js'
 import DogItem from './DogItem.js'
 import { useDispatch } from 'react-redux'
@@ -8,7 +7,7 @@ import { updateDogs1 } from './dogListSlice.js'
 
 export default function DogDropSpot({ rank, dogName, tableName, children }) {
   const dispatch = useDispatch()
-  const [{ canDrop, isOver, getItem }, drop] = useDrop(() => ({
+  const [{ isOver }, drop] = useDrop(() => ({
     // The type (or types) to accept - strings or symbols
     accept: ItemTypes.DOG,
     // end: () => dispatch(updateDogs1({ dogName, rank, currentTable })),
@@ -24,11 +23,7 @@ export default function DogDropSpot({ rank, dogName, tableName, children }) {
   }))
 
   return (
-    <div
-      ref={drop}
-      role={'Dustbin'}
-      style={{ backgroundColor: isOver ? 'red' : 'greenyellow' }}
-    >
+    <div ref={drop} style={{ backgroundColor: isOver ? 'black' : 'white' }}>
       {/* {canDrop ? 'Release to drop' : children} */}
       {/* {children} */}
       <DogItem dogName={dogName} currentRank={rank} currentTable={tableName} />

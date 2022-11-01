@@ -3,9 +3,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 
-import DogItem from './features/dogs/DogItem'
-import DogDropSpot from './features/dogs/DogDropSpot'
-
 import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
 import {
