@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { client } from '../../api/client'
 import rankDogs from './RankDogs'
+import axios from 'axios'
 
 const initialState = {
   dogs1: [],
@@ -10,10 +10,13 @@ const initialState = {
 }
 
 export const fetchDogs = createAsyncThunk('dogs/fetchDogs', async () => {
-  const response = await client.get('https://dog.ceo/api/breeds/list/all')
-  // const response = await client.get('http://localhost:3000/dogs.json')
 
-  const keys = Object.keys(response)
+const response = await axios.get(
+  "https://dog.ceo/api/breeds/list/all"
+)
+
+
+  const keys = Object.keys(response.data.message)
   // const doggos = []
   const dogs1 = []
   const dogs2 = []
