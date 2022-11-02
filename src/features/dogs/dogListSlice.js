@@ -10,8 +10,8 @@ const initialState = {
 }
 
 export const fetchDogs = createAsyncThunk('dogs/fetchDogs', async () => {
-  const response = await client.get('https://dog.ceo/api/breeds/list/all')
-  // const response = await client.get('http://localhost:3000/dogs.json')
+  // const response = await client.get('https://dog.ceo/api/breeds/list/all')
+  const response = await client.get('http://localhost:3000/dogs.json')
 
   const keys = Object.keys(response)
   // const doggos = []
