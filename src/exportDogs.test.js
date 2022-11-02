@@ -7,11 +7,7 @@ const dogs = {
     'stbernard',
     'lhasa',
     'tervuren',
-    'pitbull',
-    'cockapoo',
-    'ridgeback',
-    'puggle',
-    'chow',
+
   ],
   dogs2: [
     'eskimo',
@@ -31,31 +27,22 @@ const dogs = {
 
 const result = {
 "dogBreeds": {
-  "breed1Total": 10,
+  "breed1Total": 5,
   "breed1Rank": {
-    "rank1": "appenzeller",
-    "rank2": "kelpie",
-    "rank3": "waterdog",
-    "rank4": "doberman",
-    "rank5": "shihtzu",
-    "rank6": "collie",
-    "rank7": "saluki",
-    "rank8": "vizsla",
-    "rank9": "otterhound",
-    "rank10": "brabancon"
+    "rank1": "pug",
+    "rank2": "segugio",
+    "rank3": "stbernard",
+    "rank4": "lhasa",
+    "rank5": "tervuren",
+
   },
-  "breed2Total": 10,
+  "breed2Total": 5,
   "breed2Rank": {
-    "rank1": "ovcharka",
-    "rank2": "dachshund",
-    "rank3": "mix",
-    "rank4": "affenpinscher",
-    "rank5": "labrador",
-    "rank6": "setter",
-    "rank7": "african",
-    "rank8": "spaniel",
-    "rank9": "pointer",
-    "rank10": "greyhound"
+    "rank1": "eskimo",
+    "rank2": "corgi",
+    "rank3": "dingo",
+    "rank4": "mexicanhairless",
+    "rank5": "pinscher",
 } 
 }}
 

@@ -22,7 +22,6 @@ export default function DogTable({ dogs, tableName }) {
         <TableBody>
           {dogs.map((d, index) => (
             <TableRow
-              // rank={index + 1}
               key={index + 1}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
@@ -31,7 +30,6 @@ export default function DogTable({ dogs, tableName }) {
               </TableCell>
               <TableCell align="right">
                 <DogDropSpot dogName={d} rank={index + 1} tableName={tableName}>
-                  {/* <DogItem dogName={d} /> */}
                 </DogDropSpot>
               </TableCell>
             </TableRow>

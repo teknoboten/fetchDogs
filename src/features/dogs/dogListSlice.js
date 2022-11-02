@@ -10,9 +10,8 @@ const initialState = {
 }
 
 export const fetchDogs = createAsyncThunk('dogs/fetchDogs', async () => {
-  // const response = await client.get('https://dog.ceo/api/breeds/list/all')
-  const response = await client.get('http://localhost:3000/dogs.json')
-  // const response = await client.get('http://localhost:3001/dogs.json')
+  const response = await client.get('https://dog.ceo/api/breeds/list/all')
+  // const response = await client.get('http://localhost:3000/dogs.json')
 
   const keys = Object.keys(response)
   // const doggos = []
@@ -24,7 +23,6 @@ export const fetchDogs = createAsyncThunk('dogs/fetchDogs', async () => {
     const spliced2 = keys.splice((keys.length * Math.random()) << 0, 1)
     dogs1.push(spliced1[0])
     dogs2.push(spliced2[0])
-    // doggos.push(keys[(keys.length * Math.random()) << 0])
   }
   return { dogs1, dogs2 }
 })
@@ -61,14 +59,7 @@ export const { updateDogs1 } = dogSlice.actions
 
 export const selectAllDogs1 = (state) => state.dogs.dogs1
 export const selectAllDogs2 = (state) => state.dogs.dogs2
-
 export const selectDogByName = (state, dogName) => {}
-// export const selectDogs1ById = (state) => {
-//   return state.dogs.dogs1.map((dog, index) => ({
-//     dogName: dog,
-//     dogId: index + 1,
-//   }))
-// }
 
 export const selectDog = (state) => {}
 export default dogSlice.reducer

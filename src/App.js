@@ -32,8 +32,6 @@ function App() {
     }
   }, [status, dispatch])
 
-  // const dogs = useSelector((state) => state.dogs)
-
   return (
     <Container>
       {exported ? (
@@ -47,7 +45,7 @@ function App() {
                   <DogTable tableName="Breed1" dogs={dogs1} />
                 </Grid>
                 <Grid item md={6}>
-                  <DogTable className="table" tableName="Breed2" dogs={dogs2} />
+                  <DogTable tableName="Breed2" dogs={dogs2} />
                 </Grid>
               </Grid>
             ) : (
@@ -59,46 +57,9 @@ function App() {
           </Button>
         </Container>
       )}
-      {/* <Container>
-        {exported ? (
-          <ExportedDogs dogs={allDogs} />
-        ) : (
-          <Button size="large" onClick={exportDogs}>
-            Export Dogs
-          </Button>
-        )}
-      </Container> */}
+
     </Container>
   )
 }
 
 export default App
-
-// return (
-//   <DndProvider backend={HTML5Backend}>
-//     <Container>
-//       {dogs1.length ? (
-//         <Grid container spacing={3} justifyContent="center">
-//           <Grid item md={6}>
-//             <DogTable tableName="Breed1" dogs={dogs1} />
-//           </Grid>
-//           <Grid item md={6}>
-//             <DogTable className="table" tableName="Breed2" dogs={dogs2} />
-//           </Grid>
-//         </Grid>
-//       ) : (
-//         <span>no dogs here 🐶 </span>
-//       )}
-//     </Container>
-//     <Container>
-//       {exported ? (
-//         <ExportedDogs dogs={allDogs} />
-//       ) : (
-//         <Button size="large" onClick={exportDogs}>
-//           Export Dogs
-//         </Button>
-//       )}
-//     </Container>
-//   </DndProvider>
-// )
-// }
