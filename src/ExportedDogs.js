@@ -9,11 +9,11 @@ export default function ExportedDogs({ dogs, toggleDogs }) {
 
   console.log(dogBreeds)
   return (
-<Container>
-  <div>
-    {dogBreeds}
-  </div>
-  <Button size="large" onClick={toggleDogs}>Rank More Dogs</Button>
-  </Container>
+    <Container>
+      <div>{dogBreeds}</div>
+      <Button size="large" onClick={toggleDogs}>
+        Rank More Dogs
+      </Button>
+    </Container>
   )
 }

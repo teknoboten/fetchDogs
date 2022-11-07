@@ -19,7 +19,15 @@ a {
 
 .dog {
   height: 8vh;
-  width: 90%;
+  width: 50%;
   /* margin: 2px auto; */
   background-color: aquamarine;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  margin: 2px;
 }
