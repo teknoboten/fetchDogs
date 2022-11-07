@@ -57,12 +57,7 @@ const dogSlice = createSlice({
         state.dogs2 = newDogs2
       }
     },
-    // updateDogs1: (state, action) => {
-    //   state.dogs1 = action.payload
-    // },
-    // updateDogs2: (state, action) => {
-    //   state.dogs2 = action.payload
-    // },
+
     moveDogs: (state, action) => {
       if (action.payload.source === 'dogs1') {
         const reorderedItem = state.dogs1.filter(

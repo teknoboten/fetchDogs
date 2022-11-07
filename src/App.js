@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-
-import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
+import Grid from '@mui/material/Grid'
 import Button from '@mui/material/Button'
+import { Typography } from '@mui/material'
+
 import {
   selectAllDogs1,
   selectAllDogs2,
   fetchDogs,
-  updateDogs1,
-  updateDogs2,
   moveDogs,
   reorderDogs,
 } from './features/dogs/dogListSlice'
@@ -26,9 +25,9 @@ function App() {
   const dogs2 = useSelector(selectAllDogs2)
   const status = useSelector((state) => state.dogs.status)
   // const allDogs = useSelector((state) => state.dogs)
-  // const [exported, setExported] = useState(false)
+  const [exported, setExported] = useState(false)
 
-  // const toggleExported = () => setExported(!exported)
+  const toggleExported = () => setExported(!exported)
 
   useEffect(() => {
     if (status === 'idle') {
@@ -46,6 +45,7 @@ function App() {
     //   : console.log('ok you can do that')
     //check source.length < 1 "woof woof nope"
 
+    //handle same table
     if (result.destination.droppableId === result.source.droppableId) {
       dispatch(
         reorderDogs({
@@ -54,11 +54,6 @@ function App() {
           newIndex: result.destination.index,
         })
       )
-
-      // const items = Array.from(isDogs1 ? dogs1 : dogs2)
-      // const [reorderedItem] = items.splice(result.source.index, 1)
-      // items.splice(result.destination.index, 0, reorderedItem)
-      // isDogs1 ? dispatch(updateDogs1(items)) : dispatch(updateDogs2(items))
       return
     }
 
@@ -75,7 +70,8 @@ function App() {
   }
 
   return (
-    <div>
+    <Container>
+      <Typography variant="h2">Fetch Doggos 🐶 </Typography>
       <Grid container spacing={3} justifyContent="center">
         <DragDropContext onDragEnd={handleOnDragEnd}>
           <Grid item md={6}>
@@ -86,7 +82,12 @@ function App() {
           </Grid>
         </DragDropContext>
       </Grid>
-    </div>
+      <div className="export">
+        <Button variant="contained" color="secondary">
+          <h4>Export these Doggos</h4>
+        </Button>
+      </div>
+    </Container>
   )
 }
 
