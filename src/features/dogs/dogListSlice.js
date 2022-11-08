@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import rankDogs from './RankDogs'
 import axios from 'axios'
 
 const initialState = {

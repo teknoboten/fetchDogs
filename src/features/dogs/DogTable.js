@@ -58,15 +58,3 @@ export default function DogTable({ dogs, tableName }) {
     </TableContainer>
   )
 }
-
-{
-  /* <TableCell align="right">
-<div
-  ref={provided.innerRef}
-  {...provided.draggableProps}
-  {...provided.dragHandleProps}
->
-  {dogName}
-</div>
-</TableCell> */
-}
