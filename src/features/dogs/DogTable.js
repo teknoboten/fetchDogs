@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from 'react'
-// import { useSelector } from 'react-redux'
+import React from 'react'
 import { Draggable, Droppable } from 'react-beautiful-dnd'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
-import Button from '@mui/material/Button'
 import Alert from '@mui/material/Alert'
 
 export default function DogTable({
@@ -19,35 +16,36 @@ export default function DogTable({
   resetDrag,
 }) {
   return (
-    <TableContainer component={Paper}>
+    <TableContainer sx={{ borderRadius: 2 }}>
       <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Rank</TableCell>
-            <TableCell align="right">Breed</TableCell>
-          </TableRow>
-        </TableHead>
         <Droppable droppableId={tableName} isDropDisabled={disableDrag}>
-          {(provided) => (
-            <TableBody {...provided.droppableProps} ref={provided.innerRef}>
+          {(provided, snapshot) => (
+            <TableBody
+              sx={{ bgcolor: '#4dd0e1' }}
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
               {dogs.map(({ id, dogName }, index) => {
                 return (
                   <TableRow
                     key={index + 1}
-                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                    sx={{
+                      bgcolor: snapshot.isDraggingOver ? '#00acc1' : '#4dd0e1',
+                    }}
                   >
-                    <TableCell component="th" scope="row">
-                      {index + 1}
-                    </TableCell>
                     <Draggable
                       key={dogName}
                       draggableId={dogName}
                       index={index}
                       isDragDisabled={disableDrag}
                     >
-                      {(provided) => (
+                      {(provided, snapshot) => (
                         <TableCell
-                          align="right"
+                          sx={{
+                            borderBottom: 0,
+                            width: '100%',
+                          }}
+                          align="center"
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
@@ -57,7 +55,17 @@ export default function DogTable({
                               Woof Woof not allowed
                             </Alert>
                           ) : (
-                            dogName
+                            <Paper
+                              sx={{
+                                fontSize: '1.2rem',
+                                height: 50,
+                                lineHeight: '50px',
+                                textAlign: 'center',
+                              }}
+                              elevation={2}
+                            >
+                              {dogName}
+                            </Paper>
                           )}
                         </TableCell>
                       )}
