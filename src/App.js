@@ -5,7 +5,8 @@ import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import Button from '@mui/material/Button'
 import { Typography } from '@mui/material'
-import Alert from '@mui/material'
+import BottomNavigation from '@mui/material/BottomNavigation'
+import Paper from '@mui/material/Paper'
 
 import {
   selectAllDogs1,
@@ -87,43 +88,53 @@ function App() {
       {exported ? (
         <ExportedDogs dogs={allDogs} toggleDogs={toggleExported} />
       ) : (
-        <Container>
-          <Typography variant="h2">Fetch Doggos 🐶 </Typography>
-          <Grid container spacing={3} justifyContent="center">
-            <DragDropContext
-              onDragEnd={handleOnDragEnd}
-              onBeforeDragStart={onBeforeDragStart}
-            >
-              <Grid item md={6}>
-                <DogTable
-                  tableName="dogs1"
-                  dogs={dogs1}
-                  error={error}
-                  disableDrag={disableDrag}
-                  resetDrag={resetDrag}
-                />
-              </Grid>
-              <Grid item md={6}>
-                <DogTable
-                  tableName="dogs2"
-                  dogs={dogs2}
-                  error={error}
-                  disableDrag={disableDrag}
-                  resetDrag={resetDrag}
-                />
-              </Grid>
-            </DragDropContext>
+        <Grid container alignItems="center">
+          <Grid item md={12}>
+            <Typography variant="h2" align="center">
+              Fetch Doggos 🐶
+            </Typography>
           </Grid>
-          <div className="export">
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={toggleExported}
+          <DragDropContext
+            onDragEnd={handleOnDragEnd}
+            onBeforeDragStart={onBeforeDragStart}
+          >
+            <Grid item md={6}>
+              <DogTable
+                tableName="dogs1"
+                dogs={dogs1}
+                error={error}
+                disableDrag={disableDrag}
+                resetDrag={resetDrag}
+              />
+            </Grid>
+            <Grid item md={6}>
+              <DogTable
+                tableName="dogs2"
+                dogs={dogs2}
+                error={error}
+                disableDrag={disableDrag}
+                resetDrag={resetDrag}
+              />
+            </Grid>
+          </DragDropContext>
+
+          <Grid item md={12}>
+            <Paper
+              sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }}
+              elevation={3}
             >
-              <h4>Export these Doggos</h4>
-            </Button>
-          </div>
-        </Container>
+              <BottomNavigation>
+                <Button
+                  variant="contained"
+                  // color="secondary"
+                  onClick={toggleExported}
+                >
+                  Export these Doggos
+                </Button>
+              </BottomNavigation>
+            </Paper>
+          </Grid>
+        </Grid>
       )}
     </Container>
   )
