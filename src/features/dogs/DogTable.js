@@ -10,15 +10,14 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import Button from '@mui/material/Button'
 import Alert from '@mui/material/Alert'
-import Box from '@mui/material/Box'
-import Collapse from '@mui/material/Collapse'
 
-export default function DogTable({ dogs, tableName, error }) {
-  const [canDrop, setCanDrop] = useState(true)
-
-  useEffect(() => {
-    setCanDrop(!canDrop)
-  }, [error])
+export default function DogTable({
+  dogs,
+  tableName,
+  error,
+  disableDrag,
+  resetDrag,
+}) {
   return (
     <TableContainer component={Paper}>
       <Table>
@@ -28,7 +27,7 @@ export default function DogTable({ dogs, tableName, error }) {
             <TableCell align="right">Breed</TableCell>
           </TableRow>
         </TableHead>
-        <Droppable droppableId={tableName} isDropDisabled={canDrop}>
+        <Droppable droppableId={tableName} isDropDisabled={disableDrag}>
           {(provided) => (
             <TableBody {...provided.droppableProps} ref={provided.innerRef}>
               {dogs.map(({ id, dogName }, index) => {
@@ -44,21 +43,18 @@ export default function DogTable({ dogs, tableName, error }) {
                       key={dogName}
                       draggableId={dogName}
                       index={index}
+                      isDragDisabled={disableDrag}
                     >
                       {(provided) => (
                         <TableCell
-                          // align="right"
+                          align="right"
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
                         >
-                          {error === tableName ? (
-                            <Alert
-                              onClose={() => {}}
-                              variant="outlined"
-                              severity="error"
-                            >
-                              woof woof nope
+                          {error && error === tableName ? (
+                            <Alert onClose={() => resetDrag()} severity="error">
+                              Woof Woof not allowed
                             </Alert>
                           ) : (
                             dogName
@@ -70,7 +66,6 @@ export default function DogTable({ dogs, tableName, error }) {
                   </TableRow>
                 )
               })}
-              {/* {provided.placeholder} */}
             </TableBody>
           )}
         </Droppable>

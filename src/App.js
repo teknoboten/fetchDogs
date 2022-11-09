@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { DragDropContext } from 'react-beautiful-dnd'
 import Container from '@mui/material/Container'
@@ -27,6 +27,7 @@ function App() {
   const allDogs = useSelector((state) => state.dogs)
   const [exported, setExported] = useState(false)
   const [error, setError] = useState(false)
+  const [disableDrag, setDisableDrag] = useState(false)
 
   const toggleExported = () => setExported(!exported)
 
@@ -36,31 +37,24 @@ function App() {
     }
   }, [status, dispatch])
 
-  useEffect(() => {
-    console.log('error:', error)
-  }, [error])
-
-  function startDrag(result) {
-    console.log(result)
+  const onBeforeDragStart = (result) => {
     const source = result.source.droppableId === 'dogs1' ? dogs1 : dogs2
+
     if (source.length === 1) {
+      setDisableDrag(true)
       setError(result.source.droppableId)
+    } else {
+      setDisableDrag(false)
+      setError(false)
     }
+
+    return
   }
 
-  function handleOnDragEnd(result) {
+  const handleOnDragEnd = (result) => {
     if (!result.destination) return
 
     const source = result.source.droppableId === 'dogs1' ? dogs1 : dogs2
-
-    // source.length < 7 ? console.log('nope') : console.log('ok you can do that')
-
-    //check if the source is less than 1
-    // const isDogs1 = result.source.droppableId === 'dogs1'
-    // isDogs1 && dogs1.length < 7
-    //   ? console.log('nope')
-    //   : console.log('ok you can do that')
-    // //check source.length < 1 "woof woof nope"
 
     if (result.destination.droppableId === result.source.droppableId) {
       dispatch(
@@ -83,6 +77,11 @@ function App() {
     return
   }
 
+  const resetDrag = () => {
+    setDisableDrag(false)
+    setError(false)
+  }
+
   return (
     <Container>
       {exported ? (
@@ -93,13 +92,25 @@ function App() {
           <Grid container spacing={3} justifyContent="center">
             <DragDropContext
               onDragEnd={handleOnDragEnd}
-              onDragStart={startDrag}
+              onBeforeDragStart={onBeforeDragStart}
             >
               <Grid item md={6}>
-                <DogTable tableName="dogs1" dogs={dogs1} error={error} />
+                <DogTable
+                  tableName="dogs1"
+                  dogs={dogs1}
+                  error={error}
+                  disableDrag={disableDrag}
+                  resetDrag={resetDrag}
+                />
               </Grid>
               <Grid item md={6}>
-                <DogTable tableName="dogs2" dogs={dogs2} error={error} />
+                <DogTable
+                  tableName="dogs2"
+                  dogs={dogs2}
+                  error={error}
+                  disableDrag={disableDrag}
+                  resetDrag={resetDrag}
+                />
               </Grid>
             </DragDropContext>
           </Grid>
