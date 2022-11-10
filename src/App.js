@@ -14,10 +14,10 @@ import {
   fetchDogs,
   moveDogs,
   reorderDogs,
-} from './features/dogs/dogListSlice'
+} from './app/dogListSlice'
 
 import ExportedDogs from './ExportedDogs'
-import DogTable from './features/dogs/DogTable'
+import DogTable from './DogTable'
 import './App.css'
 
 function App() {

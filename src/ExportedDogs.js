@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
-import exportDogs from './exportDogs'
+import exportDogs from './helpers/exportDogs'
 
 export default function ExportedDogs({ dogs, toggleDogs }) {
   const dogBreeds = exportDogs(dogs)

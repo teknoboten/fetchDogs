@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { store } from './app/store'
 import App from './App'
 
-import { fetchDogs } from './features/dogs/dogListSlice'
+import { fetchDogs } from './app/dogListSlice'
 
 store.dispatch(fetchDogs())
 
