@@ -10,7 +10,7 @@ export default function ExportedDogs({ dogs, toggleDogs }) {
   return (
     <Container>
       <div>{dogBreeds}</div>
-      <Button size="large" onClick={toggleDogs} color="secondary">
+      <Button size="large" onClick={toggleDogs}>
         Rank More Dogs
       </Button>
     </Container>

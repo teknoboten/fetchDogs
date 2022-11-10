@@ -7,6 +7,8 @@ import TableContainer from '@mui/material/TableContainer'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import Alert from '@mui/material/Alert'
+import TableHead from '@mui/material/TableHead'
+import { Typography } from '@mui/material'
 
 export default function DogTable({
   dogs,
@@ -18,6 +20,15 @@ export default function DogTable({
   return (
     <TableContainer sx={{ borderRadius: 2 }}>
       <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>
+              <Typography variant="h4" align="center">
+                {tableName === 'dogs1' ? 'Dogs 1' : 'Dogs2'}
+              </Typography>
+            </TableCell>
+          </TableRow>
+        </TableHead>
         <Droppable droppableId={tableName} isDropDisabled={disableDrag}>
           {(provided, snapshot) => (
             <TableBody
