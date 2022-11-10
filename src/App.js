@@ -1,12 +1,12 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { DragDropContext } from 'react-beautiful-dnd'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import Button from '@mui/material/Button'
 import { Typography } from '@mui/material'
-import BottomNavigation from '@mui/material/BottomNavigation'
-import Paper from '@mui/material/Paper'
+import Box from '@mui/material/Box'
+import Link from '@mui/material/Link'
 
 import {
   selectAllDogs1,
@@ -55,8 +55,6 @@ function App() {
   const handleOnDragEnd = (result) => {
     if (!result.destination) return
 
-    const source = result.source.droppableId === 'dogs1' ? dogs1 : dogs2
-
     if (result.destination.droppableId === result.source.droppableId) {
       dispatch(
         reorderDogs({
@@ -88,17 +86,26 @@ function App() {
       {exported ? (
         <ExportedDogs dogs={allDogs} toggleDogs={toggleExported} />
       ) : (
-        <Grid container alignItems="center">
-          <Grid item md={12}>
-            <Typography variant="h2" align="center">
+        <Grid container alignItems="space-between" sx={{ marginTop: '5vh' }}>
+          <Grid item xs={12}>
+            <Typography variant="h1" align="center">
               Fetch Doggos 🐶
             </Typography>
+
+            <Box align="center" sx={{ marginY: '5vh' }}>
+              <Typography variant="body1">
+                Here are some dogs. Rank them if you want. When you're done:
+              </Typography>
+              <Button variant="text" onClick={toggleExported}>
+                Export these Doggos
+              </Button>
+            </Box>
           </Grid>
           <DragDropContext
             onDragEnd={handleOnDragEnd}
             onBeforeDragStart={onBeforeDragStart}
           >
-            <Grid item md={6}>
+            <Grid item xs={12} md={6}>
               <DogTable
                 tableName="dogs1"
                 dogs={dogs1}
@@ -107,7 +114,7 @@ function App() {
                 resetDrag={resetDrag}
               />
             </Grid>
-            <Grid item md={6}>
+            <Grid item xs={12} md={6}>
               <DogTable
                 tableName="dogs2"
                 dogs={dogs2}
@@ -117,22 +124,21 @@ function App() {
               />
             </Grid>
           </DragDropContext>
-
-          <Grid item md={12}>
-            <Paper
-              sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }}
-              elevation={3}
-            >
-              <BottomNavigation>
-                <Button
-                  variant="contained"
-                  // color="secondary"
-                  onClick={toggleExported}
-                >
-                  Export these Doggos
-                </Button>
-              </BottomNavigation>
-            </Paper>
+          <Grid item xs={12}>
+            <Box align="center" sx={{ marginY: '5vh' }}>
+              <Typography variant="body1">
+                This silly app was built by <Link href="">Serra Boten</Link> as
+                an exercise in learning{' '}
+                <Link href="https://react-redux.js.org/">Redux</Link>,{' '}
+                <Link href="https://mui.com/">Material UI</Link> and{' '}
+                <Link href="https://github.com/atlassian/react-beautiful-dnd">
+                  React Beautiful DND
+                </Link>
+                . <br /> Special thanks to{' '}
+                <Link href="https://dog.ceo/dog-api/">Dog CEO</Link> for the fun
+                API.
+              </Typography>
+            </Box>
           </Grid>
         </Grid>
       )}
